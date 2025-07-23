@@ -1,5 +1,5 @@
 {
-  "name": "@assistant-ui/react",
+  "name": "@opengate-labs/assistant-ui-react",
   "description": "TypeScript/React library for AI Chat",
   "keywords": [
     "radix-ui",
@@ -28,7 +28,7 @@
     "conversational-ui",
     "conversational-ai"
   ],
-  "version": "0.10.27",
+  "version": "1.0.0",
   "license": "MIT",
   "type": "module",
   "exports": {

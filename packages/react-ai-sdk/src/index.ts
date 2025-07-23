@@ -5,3 +5,4 @@ export * from "./useCloudRuntime";
 export * from "./converters";
 export * from "./dangerous-in-browser";
 export { frontendTools } from "./frontendTools";
+export { componentParseStream } from "./streams/componentParseStream";
