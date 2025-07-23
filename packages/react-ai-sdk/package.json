@@ -54,14 +54,13 @@
     "tsx": "^4.20.3"
   },
   "publishConfig": {
-    "access": "public",
-    "provenance": true
+    "access": "public"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/assistant-ui/assistant-ui/tree/main/packages/react-ai-sdk"
+    "url": "https://github.com/opengate-labs/assistant-ui/tree/main/packages/react-ai-sdk"
   },
   "bugs": {
-    "url": "https://github.com/assistant-ui/assistant-ui/issues"
+    "url": "https://github.com/opengate-labs/assistant-ui/issues"
   }
 }
