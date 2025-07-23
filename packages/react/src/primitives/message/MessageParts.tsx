@@ -12,7 +12,6 @@ import {
   useMessagePart,
   useMessagePartRuntime,
   useToolUIs,
-  useComponentUIs,
 } from "../../context";
 import {
   useMessage,
@@ -32,11 +31,6 @@ import type {
   FileMessagePartComponent,
   ReasoningMessagePartComponent,
 } from "../../types/MessagePartComponentTypes";
-import type { ComponentMessagePart } from "../../types/AssistantTypes";
-import type { ComponentMessagePartComponent } from "../..";
-export type ComponentMessagePartProps = ComponentMessagePart & {
-  status: MessagePartStatus;
-};
 import { MessagePartPrimitiveInProgress } from "../messagePart/MessagePartInProgress";
 import { MessagePartStatus } from "../../types/AssistantTypes";
 import { useShallow } from "zustand/shallow";
@@ -128,8 +122,6 @@ export namespace MessagePrimitiveParts {
           File?: FileMessagePartComponent | undefined;
           /** Component for rendering audio content (experimental) */
           Unstable_Audio?: Unstable_AudioMessagePartComponent | undefined;
-          /** Component for rendering structured component content */
-          Component?: ComponentMessagePartComponent | undefined;
           /** Configuration for tool call rendering */
           tools?:
             | {
@@ -213,27 +205,6 @@ const ToolUIDisplay = ({
   return <Render {...props} />;
 };
 
-const ComponentUIDisplay = ({
-  Fallback,
-  ...props
-}: {
-  Fallback: ComponentMessagePartComponent | undefined;
-} & ComponentMessagePartProps) => {
-  const Render = useComponentUIs((s) => s.getComponentUI(props.componentType)) ?? Fallback;
-  console.log("inside ComponentUIDisplay", Render);
-  if (!Render) {
-    // Fallback to text rendering if no component is registered
-    if (props.fallbackText) {
-      return <p style={{ whiteSpace: "pre-line" }}>{props.fallbackText}</p>;
-    }
-    return (
-      <pre style={{ whiteSpace: "pre-wrap" }}>
-        {JSON.stringify(props.data, null, 2)}
-      </pre>
-    );
-  }
-  return <Render {...props} />;
-};
 
 const defaultComponents = {
   Text: () => (
@@ -249,7 +220,6 @@ const defaultComponents = {
   Image: () => <MessagePartPrimitiveImage />,
   File: () => null,
   Unstable_Audio: () => null,
-  Component: undefined,
   ToolGroup: ({ children }) => children,
 } satisfies MessagePrimitiveParts.Props["components"];
 
@@ -265,7 +235,6 @@ const MessagePartComponent: FC<MessagePartComponentProps> = ({
     Source = defaultComponents.Source,
     File = defaultComponents.File,
     Unstable_Audio: Audio = defaultComponents.Unstable_Audio,
-    Component = defaultComponents.Component,
     tools = {},
   } = {},
 }) => {
@@ -305,8 +274,6 @@ const MessagePartComponent: FC<MessagePartComponentProps> = ({
     case "audio":
       return <Audio {...part} />;
 
-    case "component":
-      return <ComponentUIDisplay {...part} Fallback={Component} />;
 
     default:
       const unhandledType: never = type;
@@ -343,7 +310,6 @@ const MessagePart = memo(
     prev.components?.Image === next.components?.Image &&
     prev.components?.File === next.components?.File &&
     prev.components?.Unstable_Audio === next.components?.Unstable_Audio &&
-    prev.components?.Component === next.components?.Component &&
     prev.components?.tools === next.components?.tools &&
     prev.components?.ToolGroup === next.components?.ToolGroup,
 );

@@ -20,7 +20,6 @@ import {
   unstable_toolResultStream,
 } from "assistant-stream";
 import { asAsyncIterableStream } from "assistant-stream/utils";
-import { componentParseStream } from "./streams/componentParseStream";
 
 const { splitLocalRuntimeOptions } = INTERNAL;
 
@@ -36,8 +35,6 @@ export type UseChatRuntimeOptions = {
   headers?: HeadersValue | (() => Promise<HeadersValue>);
   body?: object;
   sendExtraMessageFields?: boolean;
-  /** Enable component parsing for structured responses (enabled by default) */
-  enableComponents?: boolean;
 } & LocalRuntimeOptions;
 
 type ChatRuntimeRequestOptions = {
@@ -137,10 +134,6 @@ class ChatRuntimeAdapter implements ChatModelAdapter {
         .pipeThrough(unstable_toolResultStream(context.tools, abortSignal))
         .pipeThrough(new AssistantMessageAccumulator());
 
-      // Add component parsing if enabled (default: true)
-      if (this.options.enableComponents !== false) {
-        stream = stream.pipeThrough(componentParseStream());
-      }
 
       yield* asAsyncIterableStream(stream);
 

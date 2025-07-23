@@ -9,7 +9,6 @@ import {
 import { fromThreadMessageLike, ThreadMessageLike } from "./ThreadMessageLike";
 import { getAutoStatus, isAutoStatus } from "./auto-status";
 import { ToolCallMessagePart } from "../../types";
-import { parseStructuredResponse, convertStructuredResponseToMessageParts } from "../../utils/parseStructuredResponse";
 
 export namespace useExternalMessageConverter {
   export type Message =
@@ -90,16 +89,9 @@ const joinExternalMessages = (
       const role = output.role;
       const content = (
         typeof output.content === "string"
-          ? (() => {
-              console.log('Parsing structured response from:', output.content);
-              const parsed = parseStructuredResponse(output.content);
-              console.log('Parsed structured response:', parsed);
-              const converted = convertStructuredResponseToMessageParts(parsed);
-              console.log('Converted to message parts:', converted);
-              return converted;
-            })()
+          ? [{ type: "text" as const, text: output.content }]
           : output.content
-      ).map((c) => ({
+      ).map((c: any) => ({
         ...c,
         ...{ [symbolInnerMessage]: [output] },
       }));

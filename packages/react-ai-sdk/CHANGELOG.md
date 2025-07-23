@@ -1,5 +1,20 @@
 # @assistant-ui/react-ai-sdk
 
+## 2.0.0
+
+### Major Changes
+
+- 09edc34: Initial release of @opengate-labs scoped packages
+  - Repackaged @assistant-ui/react as @opengate-labs/assistant-ui-react
+  - Repackaged @assistant-ui/react-ai-sdk as @opengate-labs/assistant-ui-react-ai-sdk
+  - Updated dependencies to use published packages instead of workspace references
+  - Removed experimental component features for stable release
+
+### Patch Changes
+
+- Updated dependencies [09edc34]
+  - @opengate-labs/assistant-ui-react@2.0.0
+
 ## 0.10.16
 
 ### Patch Changes

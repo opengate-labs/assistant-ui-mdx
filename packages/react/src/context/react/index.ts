@@ -7,8 +7,6 @@ export {
   useThreadList,
   useToolUIs,
   useToolUIsStore,
-  useComponentUIs,
-  useComponentUIsStore,
 } from "./AssistantContext";
 
 export {

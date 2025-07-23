@@ -5,6 +5,5 @@ export * from "./model-context";
 export * from "./primitives";
 export * from "./runtimes";
 export * from "./types";
-export * from "./utils/componentPrompts";
 
 export * as INTERNAL from "./internal";

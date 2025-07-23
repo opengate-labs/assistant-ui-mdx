@@ -1,5 +1,5 @@
 {
-  "name": "@assistant-ui/react-langgraph",
+  "name": "@opengate-labs/assistant-ui-react-langgraph",
   "version": "0.5.10",
   "license": "MIT",
   "type": "module",

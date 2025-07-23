@@ -1,5 +1,5 @@
 {
-  "name": "@assistant-ui/react-syntax-highlighter",
+  "name": "@opengate-labs/assistant-ui-react-syntax-highlighter",
   "version": "0.10.8",
   "license": "MIT",
   "type": "module",

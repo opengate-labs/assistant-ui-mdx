@@ -3,22 +3,12 @@ export {
   type AssistantToolUI,
   makeAssistantToolUI,
 } from "./makeAssistantToolUI";
-export {
-  type AssistantComponentUI,
-  makeAssistantComponentUI,
-  type ComponentMessagePartComponent,
-  type ComponentUIProps,
-} from "./makeAssistantComponentUI";
 export { useAssistantInstructions } from "./useAssistantInstructions";
 export { useAssistantTool, type AssistantToolProps } from "./useAssistantTool";
 export {
   useAssistantToolUI,
   type AssistantToolUIProps,
 } from "./useAssistantToolUI";
-export {
-  useAssistantComponentUI,
-  type AssistantComponentUIProps,
-} from "./useAssistantComponentUI";
 export { useInlineRender } from "./useInlineRender";
 
 export type {

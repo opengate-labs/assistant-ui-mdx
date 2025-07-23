@@ -58,14 +58,6 @@ export type ToolCallMessagePart<
   readonly parentId?: string;
 };
 
-export type ComponentMessagePart<TData = unknown> = {
-  readonly type: "component";
-  readonly componentType: string;
-  readonly data: TData;
-  readonly fallbackText?: string;
-  readonly parentId?: string;
-};
-
 export type ThreadUserMessagePart =
   | TextMessagePart
   | ImageMessagePart
@@ -76,7 +68,6 @@ export type ThreadAssistantMessagePart =
   | TextMessagePart
   | ReasoningMessagePart
   | ToolCallMessagePart
-  | ComponentMessagePart
   | SourceMessagePart
   | FileMessagePart;
 
